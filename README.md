@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     ...
     'sms_auth',  # you have to add this
     'sms_auth.providers.twilio' # if twilio provider
-    'sms_auth.provider.megafon' # if megafon provider
+    'sms_auth.providers.megafon' # if megafon provider
 ]
 ```
 then:
