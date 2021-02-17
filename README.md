@@ -2,7 +2,7 @@
 
 ## Requirements
 
-+ Python >= 3.8
++ Python >= 3.1
 + Django >= 3.0
 + Celery
 + Django rest framework
@@ -33,18 +33,18 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     ...
-    'smsauth',  # you have to add this
-    'smsauth.providers.twilio' # if twilio provider
-    'smsauth.provider.megafon' # if megafon provider
+    'sms_auth',  # you have to add this
+    'sms_auth.providers.twilio' # if twilio provider
+    'sms_auth.provider.megafon' # if megafon provider
 ]
 ```
 then:
 ```python
-python manage.py makemigrations smsauth && python manage.py migrate
+python manage.py makemigrations sms_auth && python manage.py migrate
 ```
 `urls.py`
 ```python
-path('auth/', include('smsauth.api.urls'))
+path('auth/', include('sms_auth.api.urls'))
 ```
 add to `settings.py`:
 ```python
