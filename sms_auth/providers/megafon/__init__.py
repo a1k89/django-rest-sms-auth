@@ -35,4 +35,4 @@ class Megafon(SMSProvider):
         return req
 
     def send_sms(self):
-        self.send_megafon_sms()
+        return self.send_megafon_sms()
