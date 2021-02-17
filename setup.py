@@ -4,11 +4,11 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="smsauth",
+    name="django-sms-auth",
     version="0.1",
     author="Andrei Koptev",
     author_email="akoptev1989@ya.ru",
-    description="Authentication users in Django through SMS code",
+    description="Django users authentication through SMS code",
     license='MIT',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -27,5 +27,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.8',
+    python_requires='>=3.0',
 )
