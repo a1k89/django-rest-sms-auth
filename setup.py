@@ -12,7 +12,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     keywords='django',
     url="https://github.com/a1k89/django-rest-sms-auth",
-    packages=['smsauth',],
+    packages=setuptools.find_packages('smsauth'),
     install_requires=['Django >= 3.0',
                       'djangorestframework',
                       'django-phonenumber-field',
