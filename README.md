@@ -62,7 +62,7 @@ SMS_AUTH_SETTINGS = {
     "SMS_AUTH_PROVIDER_FROM": "ex: +7542222222"
 }
 
-Another settings:
+
 "SMS_AUTH_CODE_LEN": int (default: 4)
 "SMS_DEBUG": bool (default: False)
 "SMS_DEBUG_CODE": int (when debug, default 1111)
