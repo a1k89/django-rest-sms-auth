@@ -9,15 +9,15 @@
 + Django-phonenumber-field
  
 ## Concept
-1. User type phone number (web/ios/android)
-2. `smsauth` validate phone number and create `sms code`
+1. Client side send phone number (web/ios/android)
+2. `smsauth` validate phone number and create `sms code` with life time
 3. `smsauth` send `sms code` (through `sms provider`)
-4.  User got `sms code`. Send it to server
-5.  Server validate `sms code` + `phone number`
+4.  User got `sms code`. Send it
+5.  `smsauth` validate `{sms code + phone number}`
 6.  Send to client `jwt token`
 
 ## Notes
-* Library use `celery`
+* Library use `celery` to send sms async. [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
 * To use `twilio` install [extra library](https://www.twilio.com/docs/libraries/python)
 * You may add your own provider inherit from `SMSProvider`
 * You must provide correct `phone format`
@@ -49,8 +49,9 @@ path('auth/', include('sms_auth.api.urls'))
 add to `settings.py`:
 ```python
 SMS_AUTH_SETTINGS = {
-    "SMS_CELERY_FILE_NAME": "run_celery", # your celery file,
+    "SMS_CELERY_FILE_NAME": "run_celery", # your system celery file,
     "SMS_AUTH_SUCCESS_KEY": "jwt_token", # property from user model
+    "SMS_AUTH_PROVIDER_FROM": "ex: +7542222222", # sms signature
     
     # If twilio
     "SMS_AUTH_ACCOUNT_SID": "Twilio SID"
@@ -59,10 +60,9 @@ SMS_AUTH_SETTINGS = {
     # If another provider
     "SMS_AUTH_PROVIDER_LOGIN":"SMS provider login"
     "SMS_AUTH_PROVIDER_PASSWORD": "SMS provider password"
-    "SMS_AUTH_PROVIDER_FROM": "ex: +7542222222"
 }
 ```
-Ok. Library is ready to use.
+Library is ready to use.
 
 ## Usage
 1. Sign-in / sign-up:
