@@ -61,16 +61,6 @@ SMS_AUTH_SETTINGS = {
     "SMS_AUTH_PROVIDER_PASSWORD": "SMS provider password"
     "SMS_AUTH_PROVIDER_FROM": "ex: +7542222222"
 }
-
-
-"SMS_AUTH_CODE_LEN": int (default: 4)
-"SMS_DEBUG": bool (default: False)
-"SMS_DEBUG_CODE": int (when debug, default 1111)
-"SMS_USER_FIELD": "username" 
-"SMS_TIMELIFE": 60 # life time of each sms code
-"SMS_CODE_NOT_FOUND": "Some text when code not found"
-"SMS_WAIT_TIME": "Some text when sms was sended"
-"SMS_REQUEST_SUCCESS": "Some text when success phone validatioin and sms sended to user"
 ```
 Ok. Library is ready to use.
 
@@ -93,8 +83,19 @@ body: {
 result: 200/400 response (with token)
 ```
 
-## Commands
+## Extra
 To clear all expired sms codes
 ```python
 python manage.py clear_expired
+```
+Additional settings:
+```
+"SMS_AUTH_CODE_LEN": int (default: 4)
+"SMS_DEBUG": bool (default: False)
+"SMS_DEBUG_CODE": int (when debug, default 1111)
+"SMS_USER_FIELD": "username" 
+"SMS_TIMELIFE": 60 # life time of each sms code
+"SMS_CODE_NOT_FOUND": "Some text when code not found"
+"SMS_WAIT_TIME": "Some text when sms was sended"
+"SMS_REQUEST_SUCCESS": "Some text when success phone validatioin and sms sended to user"
 ```
