@@ -2,8 +2,8 @@ from django.apps import AppConfig
 
 
 class SmsConfig(AppConfig):
-    name = "smsauth"
+    name = "sms_auth"
     verbose_name = "SMS auth"
 
     def ready(self):
-        from smsauth.listeners import phone_code_post_save
+        from sms_auth.listeners import phone_code_post_save
