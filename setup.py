@@ -1,19 +1,21 @@
 import setuptools
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setuptools.setup(
     name="smsauth",
     version="0.1",
     author="Andrei Koptev",
     author_email="akoptev1989@ya.ru",
-    description="Django application to auth (sign in/sign up) through sms code",
+    description="Authentication users in Django through SMS code",
     license='MIT',
-    long_description='',
+    long_description=long_description,
     long_description_content_type="text/markdown",
-    keywords='django',
+    keywords='django rest auth sms registration rest-framework django-registration sms',
     url="https://github.com/a1k89/django-rest-sms-auth",
     packages=setuptools.find_packages(),
-    install_requires=['Django >= 3.0',
+    install_requires=['Django',
                       'djangorestframework',
                       'django-phonenumber-field',
                       'celery'],
