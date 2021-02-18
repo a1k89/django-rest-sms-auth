@@ -25,6 +25,11 @@
 ```commandline
 pip install django-rest-sms-auth
 ```
+If you want to use `twilio`:
+```commandline
+pip install twilio
+```
+
 `settings.py`
 
 ```python
@@ -37,19 +42,6 @@ INSTALLED_APPS = [
     'sms_auth.providers.megafon' # if megafon provider
 ]
 
-then add `celery` file. [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
-
-```
-then:
-```python
-python manage.py makemigrations sms_auth && python manage.py migrate
-```
-`urls.py`
-```python
-path('auth/', include('sms_auth.api.urls'))
-```
-add to `settings.py`:
-```python
 SMS_AUTH_SETTINGS = {
     "SMS_CELERY_FILE_NAME": "run_celery", # your system celery file,
     "SMS_AUTH_SUCCESS_KEY": "jwt_token", # property from user model
@@ -64,6 +56,17 @@ SMS_AUTH_SETTINGS = {
     "SMS_AUTH_PROVIDER_PASSWORD": "SMS provider password"
 }
 ```
+
+Add `celery` configuration file: [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
+then:
+```python
+python manage.py makemigrations sms_auth && python manage.py migrate
+```
+`urls.py`
+```python
+path('auth/', include('sms_auth.api.urls'))
+```
+
 Library is ready to use.
 
 ## Usage
