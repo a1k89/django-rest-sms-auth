@@ -57,7 +57,7 @@ SMS_AUTH_SETTINGS = {
 }
 ```
 
-Add `celery` configuration file: [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
+Add `celery` configuration file:  [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
 
 run migrations:
 ```python
