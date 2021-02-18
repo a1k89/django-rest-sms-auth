@@ -2,3 +2,4 @@ migrations/
 build/
 dist/
 django_rest_sms_auth.egg-info/
+demo/__pycache__/
