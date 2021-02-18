@@ -2,10 +2,10 @@
 
 ## Requirements
 
-+ Python >= 3.1
-+ Django >= 3.0
++ Python >= 3.0
++ Django >= 2.0
 + Celery
-+ Django rest framework
++ Djangorestframework
 + Django-phonenumber-field
  
 ## Concept
@@ -14,13 +14,12 @@
 3. `smsauth` send `sms code` (through `sms provider`)
 4.  User got `sms code`. Send it
 5.  `smsauth` validate `{sms code + phone number}`
-6.  Send to client `jwt token`
+6.  Send to client info (`jwt token`)
 
 ## Notes
-* Library use `celery` to send sms async. [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
+* Library use `celery`. [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
 * To use `twilio` install [extra library](https://www.twilio.com/docs/libraries/python)
 * You may add your own provider inherit from `SMSProvider`
-* You must provide correct `phone format`
 
 ## Installation
 ```commandline
@@ -37,6 +36,9 @@ INSTALLED_APPS = [
     'sms_auth.providers.twilio' # if twilio provider
     'sms_auth.providers.megafon' # if megafon provider
 ]
+
+then add `celery` file. [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
+
 ```
 then:
 ```python

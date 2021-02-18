@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="django-sms-auth",
-    version="0.1.2",
+    name="django-rest-sms-auth",
+    version="0.1.1",
     author="Andrei Koptev",
     author_email="akoptev1989@ya.ru",
     description="Django users authentication through SMS code",
@@ -14,18 +14,18 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     keywords='django rest auth sms registration rest-framework django-registration sms',
     url="https://github.com/a1k89/django-rest-sms-auth",
-    packages=setuptools.find_packages(),
-    install_requires=['Django',
-                      'djangorestframework',
+    packages=setuptools.find_packages(exclude=["migrations"]),
+    install_requires=['Django>=2.0',
+                      'djangorestframework>=3.0',
+                      'phonenumbers',
                       'django-phonenumber-field',
-                      'celery'],
+                      'celery>=5.0'],
     classifiers=[
-        "Framework :: Django",
-        "Framework :: Django :: 3.1",
-        "Intended Audience :: Developers",
-        "Programming Language :: Python :: 3.8",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
+        'Operating System :: OS Independent',
+        'Topic :: Software Development'
     ],
-    python_requires='>=3.8',
+    include_package_data=True
 )

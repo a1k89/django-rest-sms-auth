@@ -1,4 +1,4 @@
 migrations/
 build/
 dist/
-django_sms_auth.egg-info/
+django_rest_sms_auth.egg-info/
