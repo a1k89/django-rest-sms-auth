@@ -12,3 +12,7 @@ class EntrySerializer(serializers.Serializer):
 class AuthSerializer(serializers.Serializer):
     phone_number = PhoneNumberField()
     code = serializers.IntegerField()
+
+
+class ChangePhoneNumberSerializer(serializers.Serializer):
+    new_phone_number = PhoneNumberField()

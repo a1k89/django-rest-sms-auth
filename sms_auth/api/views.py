@@ -3,7 +3,10 @@ from rest_framework import generics, permissions
 from ..conf import conf
 from ..services import AuthService, GeneratorService
 from .mixins import ResponsesMixin
-from .serializers import AuthSerializer, EntrySerializer
+from .serializers import \
+    AuthSerializer, \
+    EntrySerializer, \
+    ChangePhoneNumberSerializer
 
 
 class EntryAPIView(ResponsesMixin, generics.GenericAPIView):
@@ -52,5 +55,25 @@ class AuthAPIView(ResponsesMixin, generics.GenericAPIView):
             success_value = getattr(user, conf.SMS_AUTH_SUCCESS_KEY)
 
             return self.success_objects_response(success_value)
+        else:
+            return self.error_response(serializer.errors)
+
+
+class ChangePhoneNumberAPIView(ResponsesMixin, generics.GenericAPIView):
+    serializer_class = ChangePhoneNumberSerializer
+
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            new_phone_number = serializer.validated_data.get('new_phone_number')
+            owner = request.user
+            GeneratorService.execute(phone_number=new_phone_number, owner=owner)
+
+            return self.simple_text_response()
+
         else:
             return self.error_response(serializer.errors)

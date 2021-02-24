@@ -5,13 +5,14 @@ from ..utils import SmsService
 
 
 class GeneratorService(SmsService):
-    def __init__(self, phone_number: str):
+    def __init__(self, phone_number: str, owner=None):
         self.phone_number = phone_number
-
-        super().__init__()
+        self.owner = owner
 
     def process(self):
-        code = PhoneCode.objects.filter(phone_number=self.phone_number).first()
+        code = PhoneCode.objects\
+            .filter(phone_number=self.phone_number)\
+            .first()
 
         if code is not None:
             if not code.is_allow:
@@ -19,4 +20,6 @@ class GeneratorService(SmsService):
 
             code.delete()
 
-        PhoneCode.objects.create(phone_number=self.phone_number)
+        PhoneCode.objects\
+            .create(phone_number=self.phone_number,
+                    owner=self.owner)

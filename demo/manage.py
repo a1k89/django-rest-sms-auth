@@ -4,6 +4,7 @@ import os
 import sys
 
 
+
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
     try:
@@ -18,4 +19,7 @@ def main():
 
 
 if __name__ == '__main__':
+    sys.path.append( '/Users/docent/Projects/opensources/django-rest-sms-auth/source/lib/' )
+    sys.path.append( '/Users/docent/Projects/opensources/django-rest-sms-auth/source/lib/sms_auth/' )
+
     main()

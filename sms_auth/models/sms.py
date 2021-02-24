@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+
 from phonenumber_field.modelfields import PhoneNumberField
 
 from ..utils import random_code, valid_to
@@ -30,6 +32,9 @@ class PhoneCode(models.Model):
     """
 
     phone_number = PhoneNumberField(unique=True)
+    owner = models.ForeignKey(get_user_model(),
+                              null=True,
+                              on_delete=models.CASCADE)
     code = models.PositiveIntegerField(default=random_code)
     valid_to = models.DateTimeField(default=valid_to)
     created_at = models.DateTimeField(auto_now_add=True)
