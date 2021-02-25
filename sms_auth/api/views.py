@@ -1,3 +1,5 @@
+from django.utils.module_loading import import_string
+
 from rest_framework import generics, permissions
 
 from ..conf import conf
@@ -6,7 +8,8 @@ from .mixins import ResponsesMixin
 from .serializers import \
     AuthSerializer, \
     EntrySerializer, \
-    ChangePhoneNumberSerializer
+    ChangePhoneNumberSerializer, \
+    DefaultUserSerializer
 
 
 class EntryAPIView(ResponsesMixin, generics.GenericAPIView):
@@ -46,13 +49,22 @@ class AuthAPIView(ResponsesMixin, generics.GenericAPIView):
 
     serializer_class = AuthSerializer
 
+    def get_response_serializer(self):
+        try:
+            serializer = import_string(conf.SMS_USER_SERIALIZER)
+        except ImportError:
+            serializer = DefaultUserSerializer
+
+        return serializer
+
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             phone_number = serializer.validated_data.get("phone_number")
             code = serializer.validated_data.get("code")
             user = AuthService.execute(phone_number=phone_number, code=code)
-            success_value = getattr(user, conf.SMS_AUTH_SUCCESS_KEY)
+            serializer = self.get_response_serializer()
+            success_value = serializer(instance=user, context={'request': request}).data
 
             return self.success_objects_response(success_value)
         else:

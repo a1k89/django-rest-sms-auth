@@ -3,6 +3,7 @@ import importlib
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
+
 SMS_AUTH_SETTINGS = getattr(settings, "SMS_AUTH_SETTINGS", {})
 
 # SMS AUTH
@@ -37,6 +38,7 @@ SMS_AUTH_SETTINGS.setdefault("SMS_AUTH_AUTH_TOKEN", "")
 # User model
 SMS_AUTH_SETTINGS.setdefault("USER_MODEL", settings.AUTH_USER_MODEL)
 SMS_AUTH_SETTINGS.setdefault("SMS_AUTH_SUCCESS_KEY", "jwt_token")
+SMS_AUTH_SETTINGS.setdefault("SMS_USER_SERIALIZER", "sms_auth.api.serializers.DefaultUserSerializer")
 
 # Provider
 for app in settings.INSTALLED_APPS:
@@ -66,6 +68,7 @@ class Conf:
     SMS_AUTH_AUTH_TOKEN = SMS_AUTH_SETTINGS.get("SMS_AUTH_AUTH_TOKEN")
     SMS_AUTH_CODE_LEN = SMS_AUTH_SETTINGS.get("SMS_AUTH_CODE_LEN")
     SMS_AUTH_SUCCESS_KEY = SMS_AUTH_SETTINGS.get("SMS_AUTH_SUCCESS_KEY")
+    SMS_USER_SERIALIZER = SMS_AUTH_SETTINGS.get("SMS_USER_SERIALIZER")
 
 
 conf = Conf()

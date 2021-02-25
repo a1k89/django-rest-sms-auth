@@ -1,5 +1,8 @@
 # Django rest sms auth
 
+* Authentication users in Django through SMS code
+* Change user phone nuber
+
 ## Requirements
 
 + Python >= 3.0
@@ -87,6 +90,15 @@ body: {
     "code":sms_code
 }
 result: 200/400 response (with token)
+```
+
+3. Change phone number:
+```command
+POST /auth/change-phonenumber/
+body: {
+    "new_phone_number":"user new phone number"
+}
+result: 200/400 response
 ```
 
 ## Extra

@@ -125,6 +125,8 @@ SMS_AUTH_SETTINGS = {
     "SMS_AUTH_PROVIDER_FROM": "ex: +7542222222",
 
     "SMS_AUTH_ACCOUNT_SID": "Twilio SID",
-    "SMS_AUTH_AUTH_TOKEN": "Twilio token"
+    "SMS_AUTH_AUTH_TOKEN": "Twilio token",
+    "SMS_DEBUG": True,
+    "SMS_USER_SERIALIZER": "api.serializers.DefaultUserSerializer"
 
 }

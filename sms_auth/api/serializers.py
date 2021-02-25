@@ -16,3 +16,13 @@ class AuthSerializer(serializers.Serializer):
 
 class ChangePhoneNumberSerializer(serializers.Serializer):
     new_phone_number = PhoneNumberField()
+
+
+class DefaultUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'pk',
+            'first_name',
+            'last_name'
+        ]
