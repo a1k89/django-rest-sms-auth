@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 
-from ..api.exceptions import RestApiException
+from ..api.exceptions import SMSCodeNotFoundException
 from ..conf import conf
 from ..models import \
     PhoneCode
@@ -23,7 +23,7 @@ class AuthService(SmsService):
             .first()
 
         if generated_code is None:
-            raise RestApiException(detail={"detail": conf.SMS_CODE_NOT_FOUND})
+            raise SMSCodeNotFoundException()
 
         user = generated_code.owner
         if user is None:

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django-rest-sms-auth",
-    version="0.1.9",
+    version="0.1.10",
     author="Andrei Koptev",
     author_email="akoptev1989@ya.ru",
     description="Django users authentication through SMS code",
