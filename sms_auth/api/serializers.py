@@ -3,8 +3,6 @@ from django.utils.translation import gettext as _
 from phonenumber_field.serializerfields import PhoneNumberField
 from rest_framework import serializers
 
-from ..conf import conf
-
 User = get_user_model()
 
 

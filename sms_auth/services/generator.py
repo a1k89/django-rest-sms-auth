@@ -14,9 +14,14 @@ class GeneratorService(SmsService):
         self.owner = owner
 
     def process(self):
-        code = PhoneCode.objects\
-            .filter(phone_number=self.phone_number)\
-            .first()
+        if self.owner is not None:
+            code = PhoneCode.objects\
+                .filter(owner=self.owner)\
+                .first()
+        else:
+            code = PhoneCode.objects\
+                .filter(phone_number=self.phone_number)\
+                .first()
 
         if code is not None:
             if not code.is_allow:
@@ -25,7 +30,7 @@ class GeneratorService(SmsService):
             code.delete()
 
         if self.owner is not None:
-            if get_user_model().objects.filter(username=self.owner).exists():
+            if get_user_model().objects.filter(username=self.phone_number).exists():
                 raise UserAlreadyExistException()
 
         PhoneCode.objects\
