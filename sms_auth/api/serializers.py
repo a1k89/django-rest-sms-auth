@@ -20,11 +20,6 @@ class AuthSerializer(serializers.Serializer):
 class ChangePhoneNumberSerializer(serializers.Serializer):
     new_phone_number = PhoneNumberField()
 
-    def validate_new_phone_number(self, phone_number):
-        if User.objects.filter(username=phone_number).exists():
-            raise serializers.ValidationError(conf.SMS_USER_ALREADY_EXIST)
-
-        return phone_number
 
 
 class DefaultUserSerializer(serializers.ModelSerializer):
