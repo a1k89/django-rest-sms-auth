@@ -1,6 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
 from phonenumber_field.serializerfields import PhoneNumberField
 from rest_framework import serializers
+
+from ..conf import conf
 
 User = get_user_model()
 
@@ -19,7 +22,7 @@ class ChangePhoneNumberSerializer(serializers.Serializer):
 
     def validate_new_phone_number(self, phone_number):
         if User.objects.filter(username=phone_number).exists():
-            raise serializers.ValidationError(f'User with phone number {phone_number} already exist')
+            raise serializers.ValidationError(conf.SMS_USER_ALREADY_EXIST)
 
         return phone_number
 

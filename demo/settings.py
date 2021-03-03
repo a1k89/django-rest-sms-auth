@@ -127,6 +127,7 @@ SMS_AUTH_SETTINGS = {
     "SMS_AUTH_ACCOUNT_SID": "Twilio SID",
     "SMS_AUTH_AUTH_TOKEN": "Twilio token",
     "SMS_DEBUG": True,
-    "SMS_USER_SERIALIZER": "api.serializers.DefaultUserSerializer"
+    "SMS_USER_SERIALIZER": "api.serializers.DefaultUserSerializer",
+    "SMS_USER_ALREADY_EXIST": "Пользователь уже существует"
 
 }
