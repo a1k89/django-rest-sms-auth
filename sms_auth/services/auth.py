@@ -31,9 +31,9 @@ class AuthService(SmsService):
                 username=generated_code.phone_number,
                 defaults={"is_active": True}
             )
-
-        user.username = generated_code.phone_number
-        user.save()
+        else:
+            user.username = generated_code.phone_number
+            user.save()
 
         generated_code.delete()
 

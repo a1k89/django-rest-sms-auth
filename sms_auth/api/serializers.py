@@ -17,6 +17,12 @@ class AuthSerializer(serializers.Serializer):
 class ChangePhoneNumberSerializer(serializers.Serializer):
     new_phone_number = PhoneNumberField()
 
+    def validate_new_phone_number(self, phone_number):
+        if User.objects.filter(username=phone_number).exists():
+            raise serializers.ValidationError(f'User with phone number {phone_number} already exist')
+
+        return phone_number
+
 
 class DefaultUserSerializer(serializers.ModelSerializer):
     class Meta:
