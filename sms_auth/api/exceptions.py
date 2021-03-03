@@ -2,9 +2,10 @@ from rest_framework.exceptions import ValidationError
 
 from ..conf import conf
 
+
 def get_error(error_message):
     ERROR = {
-        'detail': '',
+        'message': '',
         'errors': [
             {
                 "code": "0000",
