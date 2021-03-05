@@ -1,7 +1,7 @@
 # Django rest sms auth
 
 * Authentication users in Django through SMS code
-* Change user phone nuber
+* Change user phone number with confirmation
 
 ## Requirements
 
@@ -100,6 +100,8 @@ body: {
 }
 result: 200/400 response
 ```
+After your call previous endpoint: `/auth/auth` and send new phone number with code.
+
 
 ## Extra
 To clear all expired sms codes
