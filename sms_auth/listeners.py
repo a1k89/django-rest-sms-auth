@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 from .models import PhoneCode
 from .tasks import send_sms_async
-from .conf import conf
+
 
 @receiver(post_save, sender=PhoneCode, dispatch_uid=uuid.uuid4())
 def phone_code_post_save(sender, instance, created, **kwargs):

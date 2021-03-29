@@ -6,6 +6,7 @@ from ..api.exceptions import \
 
 from ..models import PhoneCode
 from ..utils import SmsService
+from ..conf import conf
 
 
 class GeneratorService(SmsService):
@@ -30,7 +31,8 @@ class GeneratorService(SmsService):
             code.delete()
 
         if self.owner is not None:
-            if get_user_model().objects.filter(username=self.phone_number).exists():
+            kwargs = {conf.SMS_USER_FIELD: self.phone_number}
+            if get_user_model().objects.filter(**kwargs).exists():
                 raise UserAlreadyExistException()
 
         PhoneCode.objects\
