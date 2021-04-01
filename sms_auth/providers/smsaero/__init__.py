@@ -14,7 +14,7 @@ class SmsAeroException(Exception):
     pass
 
 
-class SmsAero(SMSProvider):
+class Smsaero(SMSProvider):
     def _request(self, endpoint, data):
         m = hashlib.md5(self.conf.SMS_PROVIDER_PASSWORD.encode())
         passwd = m.hexdigest()
@@ -40,13 +40,13 @@ class SmsAero(SMSProvider):
         return json.loads(response.text)
 
     def send_sms(self):
-        phone = self.to.replace( ' ', '' ) \
+        phone_number = str(self.to).replace( ' ', '' ) \
             .replace( '-', '' ) \
             .replace( '+', '' ) \
             .replace( '(', '' ) \
             .replace( ')', '' )
 
-        match = re.search( '^\+?\d{11}$', phone)
+        match = re.search( '^\+?\d{11}$', phone_number)
         if not match:
             SmsAeroException('Phone number is not valid')
             return
