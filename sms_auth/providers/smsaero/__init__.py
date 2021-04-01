@@ -22,7 +22,7 @@ class Smsaero(SMSProvider):
             'from': self.conf.SMS_PROVIDER_FROM,
             'type_send': TYPE_SEND,
             'digital': 0,
-            'user': self.conf.SMS_AUTH_PROVIDER_LOGIN,
+            'user': self.conf.SMS_PROVIDER_LOGIN,
             'password': passwd,
             'answer': 'json',
         })
