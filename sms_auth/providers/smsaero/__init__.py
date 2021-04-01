@@ -52,7 +52,7 @@ class Smsaero(SMSProvider):
             return
 
         data = {
-            'to': self.to,
+            'to': self.phone_number,
             'text': self.message,
         }
 
