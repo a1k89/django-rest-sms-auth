@@ -27,7 +27,7 @@ class Smsaero(SMSProvider):
             'answer': 'json',
         })
 
-        url = urljoin(self.url, endpoint)
+        url = urljoin(URL, endpoint)
 
         try:
             response = requests.post(url, data=data)
