@@ -117,5 +117,6 @@ Additional settings:
 "SMS_TIMELIFE": 60 # life time of each sms code
 "SMS_CODE_NOT_FOUND": "Some text when code not found"
 "SMS_WAIT_TIME": "Some text when sms was sended"
-"SMS_REQUEST_SUCCESS": "Some text when success phone validatioin and sms sended to user"
+"SMS_REQUEST_SUCCESS": "Some text when success phone validatioin and sms sended to user",
+"SMS_AUTH_DEBUG_PHONE_NUMBER": phone number with always SMS_DEBUG_CODE
 ```

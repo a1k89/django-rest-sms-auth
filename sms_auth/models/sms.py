@@ -59,10 +59,16 @@ class PhoneCode(models.Model):
         return f"Your auth code: {self.code}"
 
     def save(self, *args, **kwargs):
+        from ..conf import conf
+
         pretendent = self.__class__.objects.filter(
             phone_number=self.phone_number
         ).first()
         if pretendent is not None:
             self.pk = pretendent.pk
+
+        if conf.SMS_AUTH_DEBUG_PHONE_NUMBER is not None:
+            if self.phone_number == conf.SMS_AUTH_DEBUG_PHONE_NUMBER:
+                self.code = conf.SMS_DEBUG_CODE
 
         super().save(*args, **kwargs)
