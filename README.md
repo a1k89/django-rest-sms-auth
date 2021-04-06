@@ -2,6 +2,10 @@
 
 * Authentication users
 * Change phone number
+* Providers: 
+    * Megafon
+    * Smsaero
+    * Twilio
 
 ### Requirements
 + Python >= 3.0
