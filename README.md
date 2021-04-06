@@ -1,10 +1,9 @@
 # Django rest sms auth
 
-* Authentication users in Django through SMS code
-* Change user phone number with confirmation
+* Authentication users
+* Change phone number
 
 ## Requirements
-
 + Python >= 3.0
 + Django >= 2.0
 + Celery
@@ -12,12 +11,11 @@
 + Django-phonenumber-field
  
 ## Concept
-1. Client side send phone number (web/ios/android)
-2. `smsauth` validate phone number and create `sms code` with life time
-3. `smsauth` send `sms code` (through `sms provider`)
-4.  User got `sms code`. Send it
-5.  `smsauth` validate `{sms code + phone number}`
-6.  Send to client info (`jwt token`)
+1. Client send phone number
+2. `smsauth` validate and create `sms code`
+3. `sms provider` send digit code
+4.  Client send `{sms code + phone number}`
+5.  Response info (`jwt token`)
 
 ## Notes
 * Library use `celery`. [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
