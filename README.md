@@ -3,26 +3,26 @@
 * Authentication users
 * Change phone number
 
-## Requirements
+### Requirements
 + Python >= 3.0
 + Django >= 2.0
 + Celery
 + Djangorestframework
 + Django-phonenumber-field
  
-## Concept
+### Concept
 1. Client send phone number
 2. `smsauth` validate and create `sms code`
 3. `sms provider` send digit code
 4.  Client send `{sms code + phone number}`
 5.  Response info (`jwt token`)
 
-## Notes
+### Notes
 * Library use `celery`. [Instruction](https://github.com/a1k89/blog/wiki/Make-django-asynchronous-through-celery)
 * To use `twilio` install [extra library](https://www.twilio.com/docs/libraries/python)
 * You may add your own provider inherit from `SMSProvider`
 
-## Installation
+### Installation
 ```commandline
 pip install django-rest-sms-auth
 ```
@@ -71,7 +71,7 @@ path('auth/', include('sms_auth.api.urls'))
 
 Library is ready to use.
 
-## Usage
+### Usage
 1. Sign-in / sign-up:
 ```command
 POST /auth/sign-in/
@@ -101,7 +101,7 @@ result: 200/400 response
 After your call previous endpoint: `/auth/auth` and send new phone number with code.
 
 
-## Extra
+### Extra
 To clear all expired sms codes
 ```python
 python manage.py clear_expired
