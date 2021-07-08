@@ -46,14 +46,11 @@ class Smsaero(SMSProvider):
             .replace( '(', '' ) \
             .replace( ')', '' )
 
-        match = re.search( '^\+?\d{11}$', phone_number)
-        if not match:
-            SmsAeroException('Phone number is not valid')
-            return
-
         data = {
             'to': phone_number,
             'text': self.message,
         }
-
-        return self._request('/send/', data)
+        try:
+            return self._request('/send/', data)
+        except Exception as e:
+            print("Error send sms", data)

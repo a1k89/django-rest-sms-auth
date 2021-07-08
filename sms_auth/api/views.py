@@ -57,12 +57,16 @@ class AuthAPIView(ResponsesMixin, generics.GenericAPIView):
 
         return serializer
 
+    def after_auth(self, *args, **kwargs):
+        pass
+
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             phone_number = serializer.validated_data.get("phone_number")
             code = serializer.validated_data.get("code")
-            user = AuthService.execute(phone_number=phone_number, code=code)
+            user, is_created = AuthService.execute(phone_number=phone_number, code=code)
+            self.after_auth(user=user, is_created=is_created)
             serializer = self.get_response_serializer()
             success_value = serializer(instance=user, context={'request': request}).data
 

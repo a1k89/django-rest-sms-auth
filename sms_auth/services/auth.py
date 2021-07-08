@@ -26,13 +26,14 @@ class AuthService(SmsService):
             raise SMSCodeNotFoundException()
 
         user = generated_code.owner
+        is_created = False
         kwargs = {conf.SMS_USER_FIELD: generated_code.phone_number}
         if user is None:
-            user, created = User.objects.get_or_create(**kwargs,
+            user, is_created = User.objects.get_or_create(**kwargs,
                                                        defaults={"is_active": True})
         else:
             user.save(**kwargs)
 
         generated_code.delete()
 
-        return user
+        return user, is_created
